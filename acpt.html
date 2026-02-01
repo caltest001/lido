@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流程圖 - ACCEPT / SUBMIT </title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4a5568;
+            --secondary: #6b7280;
+            --accent: #8b9fa8;
+            --success: #9ca986;
+            --warning: #d4a574;
+            --danger: #c49691;
+            --bg-light: #f5f5f0;
+            --bg-dark: #3d4451;
+            --border: #d9d9d4;
+            --shadow: rgba(0, 0, 0, 0.1);
+            
+            /* 莫蘭迪方法色 */
+            --path-one: #9b8e9f;
+            --path-one-light: #b5a9b8;
+            --path-two: #a8989e;
+            --path-two-light: #c4b5ba;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #b5a9b8 0%, #a8989e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a5568 0%, #6b7280 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg-light);
+            border-bottom: 3px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Noto Sans TC', sans-serif;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: rgba(49, 130, 206, 0.1);
+            color: var(--accent);
+        }
+
+        .tab.active {
+            color: var(--accent);
+            background: white;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeInContent 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flow-node {
+            background: white;
+            border: 3px solid var(--accent);
+            border-radius: 15px;
+            padding: 25px 35px;
+            min-width: 200px;
+            max-width: 450px;
+            width: auto;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.3s ease;
+            animation: popIn 0.5s ease-out backwards;
+        }
+
+        .flow-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(49, 130, 206, 0.3);
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .flow-node.start {
+            background: linear-gradient(135deg, var(--success) 0%, #b4c4a3 100%);
+            color: white;
+            border-color: var(--success);
+            font-weight: 700;
+        }
+
+        .flow-node.process {
+            background: linear-gradient(135deg, var(--accent) 0%, #a3b5be 100%);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .flow-node.decision {
+            background: linear-gradient(135deg, var(--warning) 0%, #e4bc8f 100%);
+            color: white;
+            border-color: var(--warning);
+            padding: 25px 35px;
+        }
+
+        .flow-node.end {
+            background: linear-gradient(135deg, var(--danger) 0%, #d9b1ac 100%);
+            color: white;
+            border-color: var(--danger);
+            border-radius: 50px;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--accent);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .flow-node h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .flow-node p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .branch {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .branch-path {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .branch-label {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1em;
+            padding: 10px 20px;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tab {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .flow-node {
+                min-width: 150px;
+                padding: 20px 25px;
+            }
+
+            .flow-row {
+                gap: 15px;
+            }
+
+            /* 優缺點分析響應式 */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Lido mBriefing 流程</h1>
+            <p>Accept / Submit 流程圖</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'accept')">ACCEPT</button>
+            <button class="tab" onclick="openTab(event, 'submit')">SUBMIT</button>
+   
+        </div>
+
+        <div id="accept" class="tab-content active">
+            <div class="flowchart">
+                <div class="flow-row">
+                    <div class="flow-node start" style="animation-delay: 0.1s;">
+                        <h3>飛行計畫接收</h3>
+                    </div>
+                </div>
+
+                <div class="flow-row" style="margin: 20px 0;">
+                    <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center;">
+                        <div class="flow-arrow" style="transform: rotate(-20deg); font-size: 2.5em;">↙</div>
+                        <div class="flow-arrow" style="transform: rotate(20deg); font-size: 2.5em;">↘</div>
+                    </div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="branch">
+                        <!-- 左邊方法 - iPad Accept -->
+                        <div class="branch-path" style="border-right: 3px dashed var(--border); padding-right: 30px;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-one) 0%, var(--path-one-light) 100%); color: white; font-size: 1.2em;">方法一：iPad Accept</div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.2s;">
+                                <h3>iPad ACCEPT</h3>
+                                <p>先決條件： 必須確認簽署者為該航班之指定 PIC。</p>
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.3s;">
+                                <h3>飛航組員會合並確認 PIC 後</h3>
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.4s;">
+                                <h3>於 iPad Accept OFP </h3>
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node decision" style="animation-delay: 0.5s;">
+                                <h3>執行結果</h3>
+                            </div>
+                            
+                            <div class="flow-row" style="margin-top: 20px;">
+                                <div style="display: flex; gap: 30px; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                        <div class="branch-label" style="background: var(--success); color: white;">成功</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.6s; background: linear-gradient(135deg, var(--success) 0%, #48bb78 100%);">
+                                            <h3>繼續執行任務</h3>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                        <div class="branch-label" style="background: var(--danger); color: white;">失敗</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.6s;">
+                                            <h3>通知組派</h3>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.7s;">
+                                            <h3>組派更改系統後</h3>
+                                            <h3>通知簽派</h3>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.8s;">
+                                            <h3>簽派換計畫後</h3>
+                                            <h3>通知組員</h3>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.9s;">
+                                            <h3>組員收到新計畫後，再次 Accept OFP</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右邊方法 - ACARS Accept -->
+                        <div class="branch-path" style="padding-left: 30px;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">方法二：ACARS Accept</div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.2s;">
+                                <h3>組員會合並確認飛行計畫內容</h3>
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.3s;">
+                                <h3>由 PIC 在 iPad Accept </h3>
+                                <p>系統已綁定只能 "CAPT" Accept </p>
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.4s;">
+                                <h3>飛航組員進駕艙後，執行 ACARS ACCEPT</h3>
+                            </div>
+                        
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node decision" style="animation-delay: 0.6s;">
+                                <h3>執行結果</h3>
+                            </div>
+                            
+                            <div class="flow-row" style="margin-top: 20px;">
+                                <div style="display: flex; gap: 30px; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                        <div class="branch-label" style="background: var(--success); color: white;">成功</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.7s; background: linear-gradient(135deg, var(--success) 0%, #48bb78 100%);">
+                                            <h3>繼續執行任務</h3>
+                                        </div>
+                                    </div>
+                                    
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                                        <div class="branch-label" style="background: var(--danger); color: white;">失敗</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.7s;">
+                                            <h3>請 PIC 再 RE accept 一次 mBriefing</h3>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.8s;">
+                                            <h3> 接著再發送一次 ACARS Accept</h3>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node decision" style="animation-delay: 0.9s;">
+                                            <h3>當 Acars ACPT 與 Lido mBriefing ACPT 的資料相同，系統才會回覆 ACARS Accept MSG </h3>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 優缺點分析 -->
+                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- 方法一優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-one); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);">
+                        <h3 style="color: var(--path-one); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid #667eea; padding-bottom: 10px;">
+                            📊 方案一優缺點
+                        </h3>
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">✅</span> 優點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
+                                正常作業下流程最為精簡、快速。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">⚠️</span> 缺點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
+                                1.若遭遇組員異動，需多方單位（組派、簽派）更正系統並重新發布計畫，溝通成本較高。<br>
+                                <span style="color: #c62828; font-weight: 500; margin-top: 8px; display: block;">
+                                    <strong>※ 此外,據友航經驗，系統變更後，曾發生組員遺漏接收程序之情形。</strong><br>
+                    
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 方法二優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.2);">
+                        <h3 style="color: var(--path-two); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid #f093fb; padding-bottom: 10px;">
+                            📊 方法二優缺點
+                        </h3>
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">✅</span> 優點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
+                                貼近現行作業程序，組員異動時簽派與組派系統不需即時聯動調整。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">⚠️</span> 缺點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
+                                <strong>1.</strong> 需執行 ACARS 與 mBriefing 雙重確認。<br>
+                                <span style="color: #c62828; font-weight: 500; margin-top: 8px; display: block; margin-left: 20px;">
+                                    作業流程略顯重複
+                                </span>
+                                <br>
+                                <strong>2.</strong> 資管需額外開發警示判斷機制，用以比對 ACARS 與 mBriefing 的訊息一致性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 系統檢查邏輯說明 -->
+                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- 方法一系統檢查邏輯 -->
+                    <div style="padding: 30px; background: linear-gradient(135deg, #e5dfe5 0%, #d9d0d9 100%); border-radius: 15px; border-left: 5px solid #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);">
+                        <h3 style="margin-bottom: 15px; color: var(--path-one); font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.5em;">⚙️</span> 方法一系統檢查邏輯
+                        </h3>
+                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #667eea;">
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 15px;">
+                                <strong style="color: var(--path-one);">檢查條件：</strong><br>
+                                當 <span style="background: #e8eaf6; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #5e35b1;">Lido mBriefing</span> 因為 PIC 跟系統不符，無法 ACPT 計畫時
+                            </p>
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 10px;">
+                                <strong style="color: var(--path-one);">執行動作：</strong>
+                            </p>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                <ol style="margin: 0; padding-left: 20px; line-height: 2;">
+                                    <li style="color: #2d3436; font-size: 1em;">組員通知組派改派遣系統</li>
+                                    <li style="color: #2d3436; font-size: 1em;">組派通知簽派換計畫</li>
+                                    <li style="color: #2d3436; font-size: 1em;">簽派重作計畫後再次上傳計畫</li>
+                                    <li style="color: #2d3436; font-size: 1em;">組員再次 Accept</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 方法二系統檢查邏輯 -->
+                    <div style="padding: 30px; background: linear-gradient(135deg, #dfe5e8 0%, #cbd6db 100%); border-radius: 15px; border-left: 5px solid #f093fb; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);">
+                        <h3 style="margin-bottom: 15px; color: var(--path-two); font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.5em;">⚙️</span> 方法二系統檢查邏輯
+                        </h3>
+                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #f093fb;">
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 15px;">
+                                <strong style="color: var(--path-two);">檢查條件：</strong><br>
+                                當 <span style="background: #fff3e0; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #e65100;">當Acars ACPT</span> 與 
+                                <span style="background: #f3e5f5; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #6a1b9a;">Lido mBriefing ACPT </span> 的資料不同時
+                            </p>
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8;">
+                                <strong style="color: var(--path-two);">執行動作：</strong><br>
+                                系統自動傳送 ACARS 訊息給組員,通知正確的 PIC 需要再次 ACCEPT
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 總結說明 -->
+                <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e8dfc8 0%, #d9cdb4 100%); border-radius: 15px; border-left: 5px solid #f39c12; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);">
+                    <h3 style="margin-bottom: 10px; color: #8b7355; font-size: 1.3em;">💡 提示</h3>
+                    <p style="font-size: 1.1em; color: #2d3436; line-height: 1.6;">
+                        <strong>ACARS ACCEPT 可以想成為指定 PIC 的方式</strong>
+                    </p>
+                </div>
+            </div>
+        </div></div>
+           
+
+       <div id="submit" class="tab-content">
+            <div class="flowchart">
+                <div class="flow-row">
+                    <div class="flow-node start" style="animation-delay: 0.1s;">
+                        <h3>Submit 流程</h3>
+                    </div>
+                </div>
+
+                <div class="flow-row" style="margin: 20px 0;">
+                    <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center;">
+                        <div class="flow-arrow" style="transform: rotate(-20deg); font-size: 2.5em;">↙</div>
+                        <div class="flow-arrow" style="transform: rotate(20deg); font-size: 2.5em;">↘</div>
+                    </div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="branch">
+                        <!-- 方法一 -->
+                        <div class="branch-path" style="border-right: 3px dashed var(--border); padding-right: 30px;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-one) 0%, var(--path-one-light) 100%); color: white; font-size: 1.2em;">方法一：同步 Submit 模式 </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.2s;">
+                                <h3>單一組員執行提交動作後，系統即自動同步並完成全組員之任務提交作業。</h3>
+        
+                            </div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+
+                            
+                            <div class="flow-row" style="margin-top: 20px;">
+                                <div style="display: flex; gap: 30px; justify-content: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+
+                                        <div class="flow-node end" style="animation-delay: 0.4s; background: linear-gradient(135deg, var(--success) 0%, #b4c4a3 100%);">
+                                            <h3>後台直接抓取單一檔案</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 方法二 -->
+                        <div class="branch-path" style="padding-left: 30px;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">方法二：個別 Submit</div>
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node process" style="animation-delay: 0.2s;">
+                                <h3>每個人都執行 Submit</h3>
+                                <p>(包含系統排程在任務結束後自動提交(目前最早可訂在ETA 8小時))</p>
+                            </div>
+                            
+
+                            
+                            <div class="flow-arrow">↓</div>
+                            
+                            <div class="flow-node end" style="animation-delay: 0.4s;">
+                                <h3>後台抓取符合條件的資料</h3>
+                                <p>條件：只抓取有填寫on block時間<br>並且有 attachment 資料</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 優缺點分析 -->
+                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <!-- 方法一優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-one); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(155, 142, 159, 0.2);">
+                        <h3 style="color: var(--path-one); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid var(--path-one); padding-bottom: 10px;">
+                            📊 方法一優缺點
+                        </h3>
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">✅</span> 優點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
+                                作業精簡： 僅需一名組員操作，大幅降低重複性程序。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">⚠️</span> 缺點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
+                                <strong>1.</strong> 連線穩定性需求： 需確保所有組員皆處於連線狀態方可達成同步；若遇連線中斷，易導致作業狀態誤判。<br><br>
+                                <strong>2.</strong> 廠商未設計此功能,需額外進行客製化。<br><br>
+                                <strong>3.</strong> 若組員 A 已完成詳細紀錄，但組員 B 在內容僅完成一半且不完整的情況下誤觸「Submit」，系統會強制將所有人（包含組員 A）的航班結束，並錯誤提交到組員B的資料。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 方法二優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(168, 152, 158, 0.2);">
+                        <h3 style="color: var(--path-two); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid var(--path-two); padding-bottom: 10px;">
+                            📊 方法二優缺點
+                        </h3>
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">✅</span> 優點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
+                                各自按 submit 將不會影響別人完整的資料。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 1.3em;">⚠️</span> 缺點
+                            </h4>
+                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
+                                每一位組員皆須執行操作程序。
+                                <span style="color: #9e7676; font-weight: 500; margin-top: 8px; display: block; margin-left: 20px;">
+                                （或需仰賴系統排程在任務結束後自動提交）
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="fuel-order" class="tab-content">
+            <div class="flowchart">
+                <div class="flow-row">
+                    <div class="flow-node start" style="animation-delay: 0.1s;">
+                        <h3>開始</h3>
+                        <p>接收燃料訂單</p>
+                    </div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="flow-arrow">↓</div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="flow-node process" style="animation-delay: 0.2s;">
+                        <h3>驗證訂單資訊</h3>
+                        <p>檢查數量、規格、交付時間</p>
+                    </div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="flow-arrow">↓</div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="flow-node decision" style="animation-delay: 0.3s;">
+                        <h3>庫存充足?</h3>
+                    </div>
+                </div>
+
+                <div class="flow-row">
+                    <div class="branch">
+                        <div class="branch-path">
+                            <div class="branch-label">是</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node process" style="animation-delay: 0.4s;">
+                                <h3>計算價格</h3>
+                                <p>根據數量和規格定價</p>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node process" style="animation-delay: 0.5s;">
+                                <h3>生成訂單</h3>
+                                <p>建立正式訂單文件</p>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node process" style="animation-delay: 0.6s;">
+                                <h3>安排配送</h3>
+                                <p>協調物流與交付</p>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node decision" style="animation-delay: 0.7s;">
+                                <h3>客戶確認?</h3>
+                            </div>
+                            <div class="flow-row">
+                                <div class="branch">
+                                    <div class="branch-path">
+                                        <div class="branch-label">確認</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.8s;">
+                                            <h3>扣除庫存</h3>
+                                            <p>更新庫存記錄</p>
+                                        </div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.9s;">
+                                            <h3>訂單完成</h3>
+                                            <p>等待配送</p>
+                                        </div>
+                                    </div>
+                                    <div class="branch-path">
+                                        <div class="branch-label">取消</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.8s;">
+                                            <h3>訂單取消</h3>
+                                            <p>通知相關部門</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="branch-path">
+                            <div class="branch-label">否</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node process" style="animation-delay: 0.4s;">
+                                <h3>檢查替代方案</h3>
+                                <p>尋找其他供應來源</p>
+                            </div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="flow-node decision" style="animation-delay: 0.5s;">
+                                <h3>有替代方案?</h3>
+                            </div>
+                            <div class="flow-row">
+                                <div class="branch">
+                                    <div class="branch-path">
+                                        <div class="branch-label">有</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node process" style="animation-delay: 0.6s;">
+                                            <h3>提供替代選項</h3>
+                                            <p>聯繫客戶確認</p>
+                                        </div>
+                                    </div>
+                                    <div class="branch-path">
+                                        <div class="branch-label">無</div>
+                                        <div class="flow-arrow">↓</div>
+                                        <div class="flow-node end" style="animation-delay: 0.6s;">
+                                            <h3>無法完成</h3>
+                                            <p>通知客戶延期</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: linear-gradient(135deg, var(--success) 0%, #48bb78 100%);"></div>
+                    <span>開始/結束</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: linear-gradient(135deg, var(--accent) 0%, #4299e1 100%);"></div>
+                    <span>處理步驟</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: linear-gradient(135deg, var(--warning) 0%, #ed8936 100%); "></div>
+                    <span>決策點</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // 隱藏所有標籤內容
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+
+            // 移除所有標籤的 active 類別
+            const tabs = document.getElementsByClassName('tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            // 顯示當前標籤內容並設置標籤為 active
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
