@@ -351,93 +351,17 @@
 
                 <div class="flow-row" style="margin: 20px 0;">
                     <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center;">
-                        <div class="flow-arrow" style="transform: rotate(-20deg); font-size: 2.5em;">↙</div>
-                        <div class="flow-arrow" style="transform: rotate(20deg); font-size: 2.5em;">↘</div>
+
                     </div>
                 </div>
 
                 <div class="flow-row">
-                    <div class="branch">
-                        <!-- 左邊方法 - iPad Accept -->
-                        <div class="branch-path" style="border-right: 3px dashed var(--border); padding-right: 30px;">
-                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-one) 0%, var(--path-one-light) 100%); color: white; font-size: 1.2em;">方法一：Lido mBriefing Accept</div>
-                            
-                            <div class="flow-arrow">↓</div>
-                            
-                            <div class="flow-node process" style="animation-delay: 0.2s;">
-                                <h3>Lido mBriefing Accept</h3>
-                                <p>先決條件： <br>1.必須指定 PIC<br>2.Lido系統組員名單也必須為同一PIC。</p>
-                            </div>
-                            
-                            <div class="flow-arrow">↓</div>
-                            
-                            <div class="flow-node process" style="animation-delay: 0.3s;">
-                                <h3>飛航組員會合並確認 PIC 後<br>於 Lido mBriefing Accept</h3><p>系統設定：只能 "PIC" Accept</p>
-                             <p>此外，於起飛前xx分鐘，系統未收到 accept 將會判定無法使用電子飛行計畫，並通知地勤遞送紙本。</p>
-                            </div>
-                            
-                        
-                            
-                            <div class="flow-arrow">↓</div>
-                            
-                            <div class="flow-node decision" style="animation-delay: 0.5s;">
-                                <h3>Lido mBriefing Accept 執行結果</h3>
-                            </div>
-                            
-                            <div class="flow-row" style="margin-top: 20px;">
-                                <div style="display: flex; gap: 30px; justify-content: center;">
-                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                                        <div class="branch-label" style="background: var(--success); color: white;">成功</div>
-                                        <div class="flow-arrow">↓</div>
-                                        <div class="flow-node end" style="animation-delay: 0.6s; background: linear-gradient(135deg, var(--success) 0%, #48bb78 100%);">
-                                            <h3>繼續任務</h3>
-                                        </div>
-                                    </div>
-                                    
-                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                                        <div class="branch-label" style="background: var(--danger); color: white;">失敗</div>
-                                        <div class="flow-arrow">↓</div>
-                                        <div class="flow-node process" style="animation-delay: 0.6s;">
-                                            <h3>組員必須通知組派</h3>
-                                        </div>
-                                        <div class="flow-arrow">↓</div>
-                                        <div class="flow-node process" style="animation-delay: 0.7s;">
-                                            <h3>組派更改系統後</h3>
-                                            <h3>通知簽派</h3>
-                                        </div>
-                                        <div class="flow-arrow">↓</div>
-                                        <div class="flow-node process" style="animation-delay: 0.8s;">
-                                            <h3>簽派換計畫後</h3>
-                                            <h3>通知組員</h3>
-                                        </div>
-                                        <div class="flow-arrow">↓</div>
-                                        <div class="flow-node decision" style="animation-delay: 0.9s;">
-                                            <h3>組員收到 <span style="background: #f3e5f5; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #6a1b9a;">新計畫 </span> 後，再次執行<br>Lido mBriefing Accept</h3>
-                                        </div>
-                                                                                <div style="display: flex; gap: 20px; margin-top: 15px;">
-                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                                                <div class="branch-label" style="background: var(--success); color: white; font-size: 0.9em;">成功</div>
-                                                <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
-                                                <div class="flow-node end" style="animation-delay: 1.1s;background: var(--success); min-width: 120px;">
-                                                    <h3 style="font-size: 1em;">繼續任務</h3>
-                                                </div>
-                                            </div>
-                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                                                <div class="branch-label" style="background: var(--danger); color: white; font-size: 0.9em;">失敗</div>
-                                                <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
-                                                <div class="flow-node end" style="animation-delay: 1.1s; min-width: 120px;">
-                                                    <h3 style="font-size: 1em;">回歸紙本作業</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
 
-                        <!-- 右邊方法 - Acars Accept -->
-                        <div class="branch-path" style="padding-left: 30px;">
-                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">方法二：Acars Accept</div>
+
+                        <!-- Acars Accept 流程 -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">Acars Accept</div>
                             
                             <div class="flow-arrow">↓</div>
                             
@@ -482,16 +406,9 @@
                                         <div style="display: flex; gap: 25px; margin-top: 10px;">
                                             <!-- 失敗分支一 -->
                                             <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; border-left: 2px dashed var(--border); padding-left: 15px;">
-                                                <div class="branch-label" style="background: var(--warning); color: white; font-size: 0.9em;">方法一</div>
-                                                <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
-                                                <div class="flow-node process" style="animation-delay: 0.7s; min-width: 150px;">
-                                                    <h3>請 PIC 使用 Lido mBriefing  再 Re-accept </h3><br>
-                                                    <p>須請資管製作系統判斷 Acars Accept 必須等於 Lido mBriefing 人員</p>
-                                                    
-                                                </div>
-                                                <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
+
                                                 <div class="flow-node process" style="animation-delay: 0.8s; min-width: 150px;">
-                                                    <h3>飛航組員再發送一次 Acars Accept</h3>
+                                                    <h3>飛航組員再檢查一次訊息，再發送一次 Acars Accept</h3>
                                                 </div>
                                                 <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
                                                 <div class="flow-node decision" style="animation-delay: 0.9s; min-width: 150px;">
@@ -516,14 +433,7 @@
                                             </div>
                                             
                                             <!-- 失敗分支二 -->
-                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; border-right: 2px dashed var(--border); padding-right: 15px;">
-                                                <div class="branch-label" style="background: var(--warning); color: white; font-size: 0.9em;">方法二</div>
-                                                <div class="flow-arrow" style="font-size: 1.5em;">↓</div>
-                                                <div class="flow-node end" style="animation-delay: 0.7s; min-width: 150px;">
-                                                    <h3 style="font-size: 0.95em;">回歸紙本作業</h3>
 
-                                            </div>
-                                        </div>
                                     </div>
                             </div>
                         </div>
@@ -531,38 +441,30 @@
                 </div>
 
                 <!-- 優缺點分析 -->
-                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 30px; align-items: center;">
                     <!-- 方法一優缺點 -->
-                    <div style="background: white; border: 3px solid var(--path-one); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);">
-                        <h3 style="color: var(--path-one); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid #667eea; padding-bottom: 10px;">
-                            📊 方案一優缺點
+                    <div style="padding: 30px; background: linear-gradient(135deg, #dfe5e8 0%, #cbd6db 100%); border-radius: 15px; border-left: 5px solid #f093fb; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3); max-width: 800px; width: 100%;">
+                        <h3 style="margin-bottom: 15px; color: var(--path-two); font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.5em;">⚙️</span> Acars Accept 系統檢查邏輯
                         </h3>
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 1.3em;">✅</span> 優點
-                            </h4>
-                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
-                                正常作業下流程最為精簡、快速。
+                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #f093fb;">
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 15px;">
+                                <strong style="color: var(--path-two);">檢查條件：</strong><br>
+                                當 <span style="background: #fff3e0; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #e65100;">Acars Accept</span> 與 
+                                <span style="background: #f3e5f5; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #6a1b9a;">Lido mBriefing Accept </span> 的PIC 名稱不同時
                             </p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 1.3em;">⚠️</span> 缺點
-                            </h4>
-                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
-                                1.若遭遇組員異動，需多方單位（組派、簽派）更正系統並重新發布計畫，溝通成本較高。<br>
-                                <span style="color: #c62828; font-weight: 500; margin-top: 8px; display: block;">
-                                    <strong>※ 此外,據友航經驗，系統變更後，曾發生組員遺漏接收程序之情形。</strong><br>
-                    
-                                </span>
+                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8;">
+                                <strong style="color: var(--path-two);">執行動作：</strong><br>
+                                系統自動傳送 Acars 訊息給組員,通知正確的 PIC 需要再次執行 Lido mBriefing Accept 接著 Acars Accept。
                             </p>
+
                         </div>
                     </div>
 
-                    <!-- 方法二優缺點 -->
-                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.2);">
+                    <!-- 優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.2); max-width: 800px; width: 100%;">
                         <h3 style="color: var(--path-two); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid #f093fb; padding-bottom: 10px;">
-                            📊 方法二優缺點
+                            📊 Acars Accept 優缺點
                         </h3>
                         <div style="margin-bottom: 20px;">
                             <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
@@ -588,66 +490,13 @@
                     </div>
                 </div>
 
-                <!-- 系統檢查邏輯說明 -->
-                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                    <!-- 方法一系統檢查邏輯 -->
-                    <div style="padding: 30px; background: linear-gradient(135deg, #e5dfe5 0%, #d9d0d9 100%); border-radius: 15px; border-left: 5px solid #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);">
-                        <h3 style="margin-bottom: 15px; color: var(--path-one); font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 1.5em;">⚙️</span> 方法一系統檢查邏輯
-                        </h3>
-                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #667eea;">
-                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 15px;">
-                                <strong style="color: var(--path-one);">檢查條件：</strong><br>
-                                當 <span style="background: #e8eaf6; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #5e35b1;">Lido mBriefing Accept</span> 因為 PIC 跟 Lido 系統 PIC 不符合，無法 ACPT 計畫時
-                            </p>
-                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 10px;">
-                                <strong style="color: var(--path-one);">執行動作：</strong>
-                            </p>
-                            <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                                <ol style="margin: 0; padding-left: 20px; line-height: 2;">
-                                    <li style="color: #2d3436; font-size: 1em;">組員通知組派改派遣系統</li>
-                                    <li style="color: #2d3436; font-size: 1em;">組派通知簽派換計畫</li>
-                                    <li style="color: #2d3436; font-size: 1em;">簽派重作計畫後再次上傳計畫</li>
-                                    <li style="color: #2d3436; font-size: 1em;">組員再次 Accept</li>
-                                </ol>
-                            </div>
 
-                        </div>
-                    </div>
-
-                    <!-- 方法二系統檢查邏輯 -->
-                    <div style="padding: 30px; background: linear-gradient(135deg, #dfe5e8 0%, #cbd6db 100%); border-radius: 15px; border-left: 5px solid #f093fb; box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);">
-                        <h3 style="margin-bottom: 15px; color: var(--path-two); font-size: 1.4em; display: flex; align-items: center; gap: 10px;">
-                            <span style="font-size: 1.5em;">⚙️</span> 方法二系統檢查邏輯
-                        </h3>
-                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #f093fb;">
-                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8; margin-bottom: 15px;">
-                                <strong style="color: var(--path-two);">檢查條件：</strong><br>
-                                當 <span style="background: #fff3e0; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #e65100;">Acars Accept</span> 與 
-                                <span style="background: #f3e5f5; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #6a1b9a;">Lido mBriefing Accept </span> 的PIC 名稱不同時
-                            </p>
-                            <p style="font-size: 1.1em; color: #2d3436; line-height: 1.8;">
-                                <strong style="color: var(--path-two);">執行動作：</strong><br>
-                                系統自動傳送 Acars 訊息給組員,通知正確的 PIC 需要再次執行 Lido mBriefing Accept 接著 Acars Accept。
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 總結說明 -->
-                <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e8dfc8 0%, #d9cdb4 100%); border-radius: 15px; border-left: 5px solid #f39c12; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);">
-                    <h3 style="margin-bottom: 10px; color: #8b7355; font-size: 1.3em;">💡 提示</h3>
-                    <p style="font-size: 1.1em; color: #2d3436; line-height: 1.6;">
-                        <strong>Acars ACCEPT 可以想成為指定 PIC 的方式</strong>
-                    </p>
-                </div>
             </div>
         </div></div>
 </div>           
 
        <div id="submit" class="tab-content">
-            <div class="flowchart">
+               <div class="flowchart">
                 <div class="flow-row">
                     <div class="flow-node start" style="animation-delay: 0.1s;">
                         <h3>Submit 流程</h3>
@@ -656,43 +505,17 @@
 
                 <div class="flow-row" style="margin: 20px 0;">
                     <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center;">
-                        <div class="flow-arrow" style="transform: rotate(-20deg); font-size: 2.5em;">↙</div>
-                        <div class="flow-arrow" style="transform: rotate(20deg); font-size: 2.5em;">↘</div>
+
                     </div>
                 </div>
 
                 <div class="flow-row">
-                    <div class="branch">
-                        <!-- 方法一 -->
-                        <div class="branch-path" style="border-right: 3px dashed var(--border); padding-right: 30px;">
-                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-one) 0%, var(--path-one-light) 100%); color: white; font-size: 1.2em;">方法一：同步 Submit 模式 </div>
-                            
-                            <div class="flow-arrow">↓</div>
-                            
-                            <div class="flow-node process" style="animation-delay: 0.2s;">
-                                <h3>1.由PIC指定單一組員負責文件檢查並進行submit，文件一經submit即視為所有人航班結束。<br></h3><h3>2. <span style="background: #e8eaf6; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #5e35b1;">所有人的航班資料立即</span> 無法再進行任何變更。</h3>
-        </h3>
-                            </div>
-                            
-                            <div class="flow-arrow">↓</div>
-                            
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
 
-                            
-                            <div class="flow-row" style="margin-top: 20px;">
-                                <div style="display: flex; gap: 30px; justify-content: center;">
-                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
 
-                                        <div class="flow-node end" style="animation-delay: 0.4s; background: linear-gradient(135deg, var(--success) 0%, #b4c4a3 100%);">
-                                            <h3>後台直接抓取單一檔案</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 方法二 -->
-                        <div class="branch-path" style="padding-left: 30px;">
-                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">方法二：個別 Submit 模式</div>
+                        <!-- Acars Accept 流程 -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div class="branch-label" style="background: linear-gradient(135deg, var(--path-two) 0%, var(--path-two-light) 100%); color: white; font-size: 1.2em;">個人 submit 模式</div>
                             
                             <div class="flow-arrow">↓</div>
                             
@@ -714,36 +537,11 @@
                 </div>
 
                 <!-- 優缺點分析 -->
-                <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                    <!-- 方法一優缺點 -->
-                    <div style="background: white; border: 3px solid var(--path-one); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(155, 142, 159, 0.2);">
-                        <h3 style="color: var(--path-one); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid var(--path-one); padding-bottom: 10px;">
-                            📊 方法一優缺點
-                        </h3>
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 1.3em;">✅</span> 優點
-                            </h4>
-                            <p style="background: linear-gradient(135deg, #e8ebe5 0%, #d4d9ce 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--success); line-height: 1.6;">
-                                作業精簡： 僅需一名組員操作，大幅降低重複性程序。
-                            </p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--danger); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-                                <span style="font-size: 1.3em;">⚠️</span> 缺點
-                            </h4>
-                            <p style="background: linear-gradient(135deg, #ebe5e5 0%, #ddd4d4 100%); padding: 15px; border-radius: 10px; border-left: 4px solid var(--danger); line-height: 1.6;">
-                                <strong>1.</strong> 連線穩定性需求： 需確保所有組員皆處於連線狀態方可達成同步；若遇連線中斷，易導致作業狀態誤判。<br><br>
-                                <strong>2.</strong> 廠商未設計此功能,需額外進行客製化。<br><br>
-                                <strong>3.</strong> 若組員 A 已完成詳細紀錄，但組員 B 在內容僅完成一半且不完整的情況下誤觸「Submit」，系統會強制將所有人（包含組員 A）的航班結束，並錯誤提交到組員B的資料。
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 方法二優缺點 -->
-                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(168, 152, 158, 0.2);">
+                <div style="margin-top: 40px; display: flex; justify-content: center;">
+                    <!-- 優缺點 -->
+                    <div style="background: white; border: 3px solid var(--path-two); border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(168, 152, 158, 0.2); max-width: 600px; width: 100%;">
                         <h3 style="color: var(--path-two); margin-bottom: 20px; font-size: 1.3em; border-bottom: 2px solid var(--path-two); padding-bottom: 10px;">
-                            📊 方法二優缺點
+                            📊 優缺點
                         </h3>
                         <div style="margin-bottom: 20px;">
                             <h4 style="color: var(--success); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
