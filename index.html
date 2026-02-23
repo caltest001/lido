@@ -608,7 +608,7 @@
                             </div>
                             <div class="collapsible-content">
                                 <strong>功能：</strong> 點選下方 Briefing，再開啟左上角工具列選擇 Fuel。
-  在Block Fuel中輸入所需總油，在Extra Fuel中選擇加油原因，亦可以變更時間及額外油量。資料會自動連動至 L/S、Fuel Sheet，並可透過 ACARS 發送訊息給 OD/MM/LD <button class="image-btn" onclick="openImageModal('fuel.png')">圖</button>
+  在Total Fuel中輸入所需總油，在Extra Fuel中選擇加油原因，亦可以變更時間及額外油量。資料會自動連動至 L/S、Fuel Sheet，並可透過 ACARS 發送訊息給 OD/MM/LD <button class="image-btn" onclick="openImageModal('fuel.png')">圖</button>
                             </div>
                         </div>
 
@@ -622,7 +622,7 @@
                             </div>
                         </div>
 
-                        <div class="detail-item">如檢視後不需修改 → 由 Captain 點選 <span class="highlight">Accept Flight</span><br>
+                        <div class="detail-item">如檢視後不需修改 → 由 PIC 點選 <span class="highlight">Accept Flight</span><br>
                         <strong>補充說明 -> </strong>回到Dashboard頁面點選 Accept Flight 或是開啟右上角功能項(圖示)點選 Accept Flight <button class="image-btn" onclick="openImageModal('accept.png')">圖</button></div> 
 
                         <div class="detail-item">⚠️ <strong>僅 Captain 有權限執行 Accept Flight</strong></div>
@@ -653,7 +653,7 @@
                     </div>
                     <div class="phase-details">
                         <div class="detail-item">確認航班能下載開啟</div>
-                        <div class="detail-item">由 Captain 點選 <span class="highlight">Accept Flight</span>（確認已接收電子飛行計畫）</div>
+                        <div class="detail-item">由 PIC 點選 <span class="highlight">Accept Flight</span>（確認已接收電子飛行計畫，進駕艙後仍需由PIC Acars ACCEPT ）</div>
                         
                         <div class="collapsible success-collapsible active">
                             <div class="collapsible-header">
@@ -714,7 +714,7 @@
                                 <span class="toggle-icon">▶</span>
                             </div>
                             <div class="collapsible-content">
-                                <strong>功能：</strong>由組員點選需要被 Share 的資訊並指定人員
+                                <strong>功能：</strong>由組員點選需要被 Share 的資訊並指定人員。<button class="image-btn" onclick="openImageModal('share.png')">圖</button>
                             </div>
                         </div>
                     </div>
@@ -775,7 +775,7 @@
                             </div>
                             <div class="collapsible-content">
                                 若返回登機門並收到新計畫 → 需重新回到 <span class="highlight">Accept Flight</span> 流程<br>
-                                （僅 Captain 可執行"接收電子飛行計畫"）<br><br>
+                                （僅 PIC 可執行"接收電子飛行計畫"）<br><br>
                                 組員確認 <span class="highlight">Real Time Sync</span> 是否同步，同步完成並且檢查完資料後，依然必須使用 <span class="highlight">ACARS Accept Release</span> 計畫
                             </div>
                         </div>
@@ -828,7 +828,7 @@
                         Submit Flight 作業
                     </div>
                     <div class="phase-details">
-                        <div class="detail-item">PIC 檢查資料無誤，點選 <span class="highlight">Submit Flight</span><button class="image-btn" onclick="openImageModal('submitbutton.png')">圖</button>（代表：送出"個人"飛行資料），並確認 POST FLIGHT DATA 已上傳至 Package<button class="image-btn" onclick="openImageModal('submit.png')">圖</button></div>
+                        <div class="detail-item">由PIC 指定Master的組員，組員與Notes 中輸入M+ＰＩＣ證號後四碼</span><button class="image-btn" onclick="openImageModal('submitbutton.png')">圖</button>，並在檢查資料無誤後，點選 <span class="highlight">Submit Flight</span><button class="image-btn" onclick="openImageModal('submitbutton.png')">圖</button>（代表：送出"個人"飛行資料），並確認 POST FLIGHT DATA 已上傳至 Package<button class="image-btn" onclick="openImageModal('submit.png')">圖</button></div>
                         
                         <div class="collapsible success-collapsible active">
                             <div class="collapsible-header">
@@ -838,11 +838,10 @@
                             <div class="collapsible-content">
                                 <strong>功能：</strong>上傳"個人"飛行資料<br>
                                 <strong>查看：</strong>上傳後可由 Flight list -> submitted 看到送出的航班與時間<br>
-                                <strong>修改：</strong>如有需要更改，仍可進去航班內，修改後再次 Submit<br>
                                 <strong>額外設定：</strong><br>
                                 (1)目前設定於航班ETA+8hrs 後自動Submit 資料(仍需開啟Lido mBriefing並連上網路)<br>
                                 (2)目前設定航班ETA+7 days後自動刪除Lido mBriefing內航班資料<br>
-                                <strong>飛行後平台設定：</strong>抓取 PIC 最新上傳的資料，並且設定只顯示 PIC 的Submit的文件
+                                <strong>飛行後平台設定：</strong>僅擷取有完整Navlog 與 OOOI的航班資料。
                             </div>
                         </div>
 
@@ -902,8 +901,8 @@
                                 <strong>NOTOC：</strong>依據 FOM 6.2.4<button class="image-btn" onclick="openImageModal('tk7.png')">圖</button> 與 GOM 5.7.2 <button class="image-btn" onclick="openImageModal('tk4.png')">圖</button>，但由於目前 ICAO 未發布電子NOTOC 相關規範，故仍保留紙本程序。<br><br>
 
                                 <strong>LoadSheet：</strong>依據 FOM 4.9.5<button class="image-btn" onclick="openImageModal('tk5.png')">圖</button>，公司已透過 ACARS 電子簽章簽名<br>
-                                若為 manual 文件 → 請拍照上傳，檔名：LS（大小寫皆可）。<br>
-                                如影像模糊 → 以 Loading 保存之副本為主。<br><br>
+                                若為 manual 文件 → LS Acars 簽署失敗須回歸紙本時，需保留紙本為飛航後文件資料<br>
+                                <br>
 
                                 <strong>FuelSheet：</strong>依據 OPSPECS<button class="image-btn" onclick="openImageModal('OPSPECS.jpg')">圖</button>，公司根據規範不同場站電子油單或是紙本油單。<br>
                                 若為電子油單 → 組員不需於Lido mBriefing做任何動作。<br>
