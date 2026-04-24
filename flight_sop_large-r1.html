@@ -1,3 +1,4 @@
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 #app{padding:18px 16px;max-width:680px;margin:0 auto;background:#f7f4f0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
@@ -26,20 +27,7 @@
 .leaf-sub-item{display:flex;gap:8px;margin-top:4px}
 .leaf-dot{flex-shrink:0;font-size:13px;margin-top:2px}
 .warn{font-size:13px;margin-top:8px;padding:6px 10px;border-radius:6px;font-weight:500}
-.image-btn{padding:4px 8px;font-size:11px;margin-left:5px;cursor:pointer;border:1px solid #a8c4d4;border-radius:4px;background:#eef4f8;color:#1e3848}
-/* ── 修正2：Modal 樣式 ── */
-#imageModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:999;justify-content:center;align-items:center}
-#imageModal.open{display:flex}
-#modalImage{max-width:90%;max-height:88vh;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,0.4)}
-#modalClose{position:fixed;top:16px;right:20px;font-size:28px;color:#fff;cursor:pointer;line-height:1;background:none;border:none}
 </style>
-
-<!-- ── 修正2：補上 Modal DOM ── -->
-<div id="imageModal">
-  <button id="modalClose" onclick="closeImageModal()">✕</button>
-  <img id="modalImage" src="" alt="">
-</div>
-
 <div id="app">
   <div class="root-card">
     <div class="root-title">飛行任務標準作業流程 (SOP)</div>
@@ -50,7 +38,6 @@
   </div>
   <div id="phases"></div>
 </div>
-
 <script>
 const P={
   blue:{
@@ -72,19 +59,6 @@ const P={
   }
 };
 
-/* ── 修正2：補上 closeImageModal ── */
-function openImageModal(imageName){
-  const modal=document.getElementById('imageModal');
-  const modalImg=document.getElementById('modalImage');
-  modalImg.src=imageName;
-  modalImg.alt='參考圖片: '+imageName;
-  modal.classList.add('open');
-  modal.onclick=function(e){if(e.target===modal)closeImageModal();};
-}
-function closeImageModal(){
-  document.getElementById('imageModal').classList.remove('open');
-}
-
 const PHASES=[
   {id:'pre',label:'一、後推前階段',sub:'7 個分區',pal:P.blue,isGroup:true,
     children:[
@@ -104,8 +78,7 @@ const PHASES=[
         ]},
       {id:'g4',label:'燃油作業',badge:'ETD -50 min',
         children:[
-          /* ── 修正1：改用反引號，修正字串語法錯誤 ── */
-          {title:'Request Fuel',body:`按照需求執行 AA Request Fuel，簽派會再次製作並上傳新計畫。<br>組員亦可聯絡簽派要求將新計畫或原計劃放置在Dispatch Info資料中，如圖：<button class="image-btn" onclick="openImageModal('addio.png')">圖</button>`},
+          {title:'Request Fuel',body:'按照需求執行 AA Request Fuel，簽派會再次製作並上傳新計畫。<br> 組員亦可聯絡簽派要求將新計畫或原計劃放置在Dispatch Info資料中，簽派員將遞送簡短計畫放置在Dispatch Info中如圖：'},
           {title:'確認油量',body:'在 Briefing 中的 Fuel 分頁確認油量並點選"Order" (此僅代表為確認油量）。'},
           {title:'Fuel Sheet 上傳',body:'若為紙本形式，使用 Add Attachment 功能拍照上傳至系統。'},
         ]},
@@ -207,4 +180,3 @@ document.getElementById('allBtn').addEventListener('click',()=>{
 });
 render();
 </script>
-
