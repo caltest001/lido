@@ -1,6 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronic Flight Plan – Operating Procedures</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-#app{padding:18px 16px;max-width:680px;margin:0 auto;background:#f7f4f0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+#app{padding:18px 16px;max-width:680px;margin:0 auto;background:#f7f4f0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .root-card{background:#8a9fa8;border-radius:16px;padding:18px 24px;margin-bottom:16px;text-align:center}
 .root-title{font-size:22px;font-weight:700;color:#fff}
 .root-sub{font-size:14px;color:rgba(255,255,255,0.8);margin-top:4px}
@@ -27,14 +33,14 @@
 .leaf-dot{flex-shrink:0;font-size:13px;margin-top:2px}
 .warn{font-size:13px;margin-top:8px;padding:6px 10px;border-radius:6px;font-weight:500}
 .image-btn{padding:4px 8px;font-size:11px;margin-left:5px;cursor:pointer;border:1px solid #a8c4d4;border-radius:4px;background:#eef4f8;color:#1e3848}
-/* ── 修正2：Modal 樣式 ── */
 #imageModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:999;justify-content:center;align-items:center}
 #imageModal.open{display:flex}
 #modalImage{max-width:90%;max-height:88vh;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,0.4)}
 #modalClose{position:fixed;top:16px;right:20px;font-size:28px;color:#fff;cursor:pointer;line-height:1;background:none;border:none}
 </style>
+</head>
+<body>
 
-<!-- ── 修正2：補上 Modal DOM ── -->
 <div id="imageModal">
   <button id="modalClose" onclick="closeImageModal()">✕</button>
   <img id="modalImage" src="" alt="">
@@ -42,11 +48,11 @@
 
 <div id="app">
   <div class="root-card">
-    <div class="root-title">電子飛行計畫操作步驟</div>
-    <div class="root-sub">點擊標題列收放</div>
+    <div class="root-title">Electronic Flight Plan – Operating Procedures</div>
+    <div class="root-sub">Tap any section header to expand / collapse</div>
   </div>
   <div class="top-bar">
-    <button class="all-btn" id="allBtn">全部收起</button>
+    <button class="all-btn" id="allBtn">Collapse All</button>
   </div>
   <div id="phases"></div>
 </div>
@@ -72,12 +78,11 @@ const P={
   }
 };
 
-/* ── 修正2：補上 closeImageModal ── */
 function openImageModal(imageName){
   const modal=document.getElementById('imageModal');
   const modalImg=document.getElementById('modalImage');
   modalImg.src=imageName;
-  modalImg.alt='參考圖片: '+imageName;
+  modalImg.alt='Reference image: '+imageName;
   modal.classList.add('open');
   modal.onclick=function(e){if(e.target===modal)closeImageModal();};
 }
@@ -86,62 +91,61 @@ function closeImageModal(){
 }
 
 const PHASES=[
-  {id:'pre',label:'一、後推前階段',sub:'7 個分區',pal:P.blue,isGroup:true,
+  {id:'pre',label:'Phase 1 – Pre-Pushback',sub:'7 Sub-sections',pal:P.blue,isGroup:true,
     children:[
-      {id:'g1',label:'報到與登入',badge:'ETD - 90 min',
+      {id:'g1',label:'Sign-in & Login',badge:'ETD − 90 min',
         children:[
-          {title:'登入 APP',body:'飛行組員應於預計離場時間（ETD）前約 90 分鐘，使用個人帳號密碼登入行動應用程式（APP）。'},
+          {title:'Log In to APP',body:'All flight crew members must log in to the mobile application (APP) using their personal credentials approximately 90 minutes before the Estimated Time of Departure (ETD).'},
         ]},
-      {id:'g2',label:'航班選取',badge:'',
+      {id:'g2',label:'Flight Selection',badge:'',
         children:[
-          {title:'一般狀況',body:'根據 GD，任務航班會自動顯示於 Dashboard。'},
-          {title:'特殊情況',body:'請利用「Add Flight」功能搜尋任務航班。'},
+          {title:'Standard Procedure',body:'Based on the General Dispatcher (GD) assignment, the assigned flight will appear automatically on the Dashboard.'},
+          {title:'Special Cases',body:'Use the "Add Flight" function to manually search for the assigned flight if it does not appear automatically.'},
         ]},
-      {id:'g3',label:'資料下載與檢視',badge:'',
+      {id:'g3',label:'Data Download & Review',badge:'',
         children:[
-          {title:'確認並下載',body:'確認航機資訊並下載當班計畫。'},
-          {title:'詳閱內容',body:'組員須詳閱 Dashboard、Briefing 及 Map 等各項內容。'},
+          {title:'Confirm & Download',body:'Verify aircraft information and download the current flight plan.'},
+          {title:'Review All Content',body:'All crew members must thoroughly review the Dashboard, Briefing, and Map sections.'},
         ]},
-      {id:'g4',label:'油量作業',badge:'ETD -50 min',
+      {id:'g4',label:'Fuel Operations',badge:'ETD − 50 min',
         children:[
-          /* ── 修正1：改用反引號，修正字串語法錯誤 ── */
-          {title:'Request Fuel',body:`按照需求執行 AA Request Fuel，簽派會再次製作並上傳新計畫。<br>組員亦可聯絡簽派要求將新計畫或原計劃放置在Dispatch Info資料中，如圖：<button class="image-btn" onclick="openImageModal('addio.png')">圖</button>`},
-          {title:'確認油量',body:'在 Briefing 中的 Fuel 分頁確認油量並點選"Order" (此僅代表為確認油量）。'},
-          {title:'Fuel Sheet 上傳',body:'若為紙本形式，使用 Add Attachment 功能拍照上傳至系統。'},
+          {title:'Request Fuel',body:`Execute AA Request Fuel as required. Dispatch will then prepare and upload a revised flight plan.<br>Crew may also contact Dispatch to request that the revised or original plan be placed in the Dispatch Info folder, as shown: <button class="image-btn" onclick="openImageModal('addio.png')">View Image</button>`},
+          {title:'Confirm Fuel',body:'In the Briefing section, navigate to the Fuel tab, confirm the fuel quantity, and select "Order" (this action confirms fuel quantity only; it does not constitute a fuel order).'},
+          {title:'Fuel Sheet Upload',body:'If using a paper fuel sheet, photograph and upload it via the Add Attachment function.'},
         ]},
-      {id:'g5',label:'計畫確認與人員指定',badge:'ETD -30 min',
+      {id:'g5',label:'Plan Acceptance & Crew Assignment',badge:'ETD − 30 min',
         children:[
-          {title:'Accept Flight',body:'ETD -30 分鐘，點選 Lido mBrieifng 內的 Accept Flight (此僅代表為確執行電子飛行計畫）。'},
-          {title:'Master 指定',body:'由 PIC 指定一名組員擔任 Master。\n受指定人員須於 Notes 輸入「M+ 機長證號末四碼」。'},
-          {title:'ACARS OFP ACPT',body:'ETD -30 分鐘，<span style="color:red; font-weight:bold;">執行 ACARS OFP ACPT。(法定程序）</span>'},
+          {title:'Accept Flight',body:'At ETD − 30 minutes, select "Accept Flight" within Lido mBriefing (this action confirms execution of the electronic flight plan only).'},
+          {title:'Master Designation',body:'The PIC shall designate one crew member as Master.\nThe designated crew member must enter "M + last four digits of the Captain\'s license number" in the Notes field.'},
+          {title:'ACARS OFP ACPT',body:'At ETD − 30 minutes, <span style="color:red; font-weight:bold;">execute ACARS OFP ACPT. (Mandatory regulatory procedure)</span>'},
         ]},
-      {id:'g6',label:'載重與性能',badge:'ETD -15 min',
+      {id:'g6',label:'Load & Performance',badge:'ETD − 15 min',
         children:[
-          {title:'ACARS LS ACPT',body:'ETD -15 分鐘，執行 ACARS LS ACPT。'},
-          {title:'輸入實際重量',body:'於 General Part 輸入實際重量相關資訊。'},
-          {title:'Performance 上傳',body:'Performance 計算完成後，使用 Add Attachment 功能拍照上傳。'},
+          {title:'ACARS LS ACPT',body:'At ETD − 15 minutes, execute ACARS LS ACPT.'},
+          {title:'Enter Actual Weights',body:'Input actual weight-related data in the General Part section.'},
+          {title:'Performance Upload',body:'Once performance calculations are complete, photograph and upload via the Add Attachment function.'},
         ]},
-      {id:'g7',label:'其餘準備事項',badge:'',
+      {id:'g7',label:'Remaining Pre-Departure Tasks',badge:'',
         children:[
-          {title:'紀錄航行資訊',body:'使用 Notes 或 Classic OFP 功能紀錄各項航行資訊。'},
-          {title:'NOTOC 危險品通知',body:'進行紙本簽署。\n落地後依照原黑袋子回收流程繳回。'},
-          {title:'系統同步',body:'航機後推前，應執行系統同步（Sync）。',warn:'⚠ 若同步失敗，請改用 Share 功能'},
-          {title:'班機後推',body:'完成上述所有程序後執行後推。'},
+          {title:'Record Flight Information',body:'Use the Notes or Classic OFP function to record all relevant flight information.'},
+          {title:'NOTOC – Dangerous Goods Notification',body:'Complete paper signature as required.\nAfter landing, return documents via the original black bag collection procedure.'},
+          {title:'System Synchronisation',body:'Before pushback, perform a system Sync.',warn:'⚠ If Sync fails, use the Share function instead.'},
+          {title:'Pushback',body:'After completing all of the above procedures, proceed with pushback.'},
         ]},
     ]},
-  {id:'cruise',label:'二、巡航階段',sub:'3 個要點',pal:P.teal,isGroup:false,
+  {id:'cruise',label:'Phase 2 – Cruise',sub:'3 Key Items',pal:P.teal,isGroup:false,
     children:[
-      {title:'Navlog 記錄',body:'使用 Notes 紀錄：Navlog 油量、時間、高度紀錄，Wind/Temp。'},
-      {title:'高空風資訊',body:'高空風資訊請參閱 Classic OFP 內容。'},
-      {title:'航行資訊記錄',body:'使用 Notes 或 Classic OFP 功能紀錄各項航行資訊。'},
+      {title:'Navlog Recording',body:'Use Notes to record: Navlog fuel figures, time, altitude entries, and Wind/Temperature data.'},
+      {title:'Upper Wind Information',body:'Refer to the Classic OFP section for upper wind data.'},
+      {title:'En-Route Information Logging',body:'Use the Notes or Classic OFP function to record all relevant en-route flight information.'},
     ]},
-  {id:'land',label:'三、落地階段',sub:'5 個步驟',pal:P.green,isGroup:false,
+  {id:'land',label:'Phase 3 – Post-Landing',sub:'5 Steps',pal:P.green,isGroup:false,
     children:[
-      {title:'Operation Log',body:'完成 Operation Log 填寫後，使用 Add Attachment 功能拍照上傳。'},
-      {title:'Journey Log',body:'Journey Log 中詳實填寫 Flight Times and Fuel。'},
-      {title:'全體組員 Submit',body:'全體組員均須執行 Submit。'},
-      {title:'Master 最終確認',body:'受指定之 Master 組員最終確認：\n① Flight Checklist 完整無誤\n② 執行 Submit（系統將以該員提交之資料為準）。'},
-      {title:'離機',body:'確認所有程序完成後，方可離機。'},
+      {title:'Operation Log',body:'Complete the Operation Log and upload a photograph via the Add Attachment function.'},
+      {title:'Journey Log',body:'Accurately enter all Flight Times and Fuel data in the Journey Log.'},
+      {title:'Submit – All Crew Members',body:'Every crew member must individually execute Submit.'},
+      {title:'Master – Final Review',body:'The designated Master crew member performs a final check:\n① Verify Flight Checklist is complete and correct\n② Execute Submit (the system will use the data submitted by this crew member as the official record).'},
+      {title:'Departure from Aircraft',body:'All crew members may depart the aircraft only after confirming that all procedures have been completed.'},
     ]},
 ];
 
@@ -193,7 +197,7 @@ function phase(p){
 
 function render(){
   document.getElementById('phases').innerHTML=PHASES.map(p=>phase(p)).join('');
-  document.getElementById('allBtn').textContent=Object.values(phaseOpen).some(v=>v)?'全部收起':'全部展開';
+  document.getElementById('allBtn').textContent=Object.values(phaseOpen).some(v=>v)?'Collapse All':'Expand All';
 }
 window.togglePhase=id=>{phaseOpen[id]=!phaseOpen[id];render();}
 window.toggleSg=id=>{sgOpen[id]=!sgOpen[id];render();}
@@ -208,3 +212,5 @@ document.getElementById('allBtn').addEventListener('click',()=>{
 render();
 </script>
 
+</body>
+</html>
