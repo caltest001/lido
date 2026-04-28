@@ -93,13 +93,13 @@ function closeImageModal(){
 const PHASES=[
   {id:'pre',label:'Phase 1 – Pre-Pushback',sub:'7 Sub-sections',pal:P.blue,isGroup:true,
     children:[
-      {id:'g1',label:'Sign-in & Login',badge:'ETD − 90 min',
+      {id:'g1',label:'Sign-in & Login',badge:'Around ETD − 90 min',
         children:[
-          {title:'Log In to APP',body:'All flight crew members must log in to the mobile application (APP) using their personal credentials approximately 90 minutes before the Estimated Time of Departure (ETD).'},
+          {title:'Log In to APP',body:'All flight crew members must log in to Lido mBriefing using their personal credentials around 90 minutes before the Estimated Time of Departure (ETD).'},
         ]},
       {id:'g2',label:'Flight Selection',badge:'',
         children:[
-          {title:'Standard Procedure',body:'Based on the General Dispatcher (GD) assignment, the assigned flight will appear automatically on the Dashboard.'},
+          {title:'Standard Procedure',body:'Based on GD assignment, the assigned flight will appear automatically on the Dashboard.'},
           {title:'Special Cases',body:'Use the "Add Flight" function to manually search for the assigned flight if it does not appear automatically.'},
         ]},
       {id:'g3',label:'Data Download & Review',badge:'',
@@ -107,21 +107,21 @@ const PHASES=[
           {title:'Confirm & Download',body:'Verify aircraft information and download the current flight plan.'},
           {title:'Review All Content',body:'All crew members must thoroughly review the Dashboard, Briefing, and Map sections.'},
         ]},
-      {id:'g4',label:'Fuel Operations',badge:'ETD − 50 min',
+      {id:'g4',label:'Fuel Operations',badge:'Around ETD − 50 min',
         children:[
-          {title:'Request Fuel',body:`Execute AA Request Fuel as required. Dispatch will then prepare and upload a revised flight plan.<br>Crew may also contact Dispatch to request that the revised or original plan be placed in the Dispatch Info folder, as shown: <button class="image-btn" onclick="openImageModal('addio.png')">View Image</button>`},
+          {title:'Request Fuel',body:`Execute AA Request Fuel as required. Dispatch will then prepare and upload a revised flight plan.<br>Crew may also contact Dispatch to request that the revised or original plan be placed in the Dispatch Info, as shown: <button class="image-btn" onclick="openImageModal('addio.png')">View Image</button>`},
           {title:'Confirm Fuel',body:'In the Briefing section, navigate to the Fuel tab, confirm the fuel quantity, and select "Order" (this action confirms fuel quantity only; it does not constitute a fuel order).'},
           {title:'Fuel Sheet Upload',body:'If using a paper fuel sheet, photograph and upload it via the Add Attachment function.'},
         ]},
-      {id:'g5',label:'Plan Acceptance & Crew Assignment',badge:'ETD − 30 min',
+      {id:'g5',label:'Plan Acceptance & Crew Assignment',badge:'Around ETD − 30 min',
         children:[
-          {title:'Accept Flight',body:'At ETD − 30 minutes, select "Accept Flight" within Lido mBriefing (this action confirms execution of the electronic flight plan only).'},
+          {title:'Accept Flight',body:'Around ETD − 30 minutes, select "Accept Flight" within Lido mBriefing (this action confirms execution of the electronic flight plan only).'},
           {title:'Master Designation',body:'The PIC shall designate one crew member as Master.\nThe designated crew member must enter "M + last four digits of the Captain\'s license number" in the Notes field.'},
-          {title:'ACARS OFP ACPT',body:'At ETD − 30 minutes, <span style="color:red; font-weight:bold;">execute ACARS OFP ACPT. (Mandatory regulatory procedure)</span>'},
+          {title:'ACARS OFP ACPT',body:'Around ETD − 30 minutes, <span style="color:red; font-weight:bold;">execute ACARS OFP ACPT. (Mandatory regulatory procedure)</span>'},
         ]},
-      {id:'g6',label:'Load & Performance',badge:'ETD − 15 min',
+      {id:'g6',label:'Load & Performance',badge:'Around ETD − 15 min',
         children:[
-          {title:'ACARS LS ACPT',body:'At ETD − 15 minutes, execute ACARS LS ACPT.'},
+          {title:'ACARS LS ACPT',body:'Around ETD − 15 minutes, execute ACARS LS ACPT.'},
           {title:'Enter Actual Weights',body:'Input actual weight-related data in the General Part section.'},
           {title:'Performance Upload',body:'Once performance calculations are complete, photograph and upload via the Add Attachment function.'},
         ]},
