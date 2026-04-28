@@ -102,7 +102,7 @@ const PHASES=[
           {title:'確認並下載',body:'確認航機資訊並下載當班計畫。'},
           {title:'詳閱內容',body:'組員須詳閱 Dashboard、Briefing 及 Map 等各項內容。'},
         ]},
-      {id:'g4',label:'燃油作業',badge:'ETD -50 min',
+      {id:'g4',label:'油量作業',badge:'ETD -50 min',
         children:[
           /* ── 修正1：改用反引號，修正字串語法錯誤 ── */
           {title:'Request Fuel',body:`按照需求執行 AA Request Fuel，簽派會再次製作並上傳新計畫。<br>組員亦可聯絡簽派要求將新計畫或原計劃放置在Dispatch Info資料中，如圖：<button class="image-btn" onclick="openImageModal('addio.png')">圖</button>`},
@@ -113,7 +113,7 @@ const PHASES=[
         children:[
           {title:'Accept Flight',body:'ETD -30 分鐘，點選 Lido mBrieifng 內的 Accept Flight (此僅代表為確執行電子飛行計畫）。'},
           {title:'Master 指定',body:'由 PIC 指定一名組員擔任 Master。\n受指定人員須於 Notes 輸入「M+ 機長證號末四碼」。'},
-          {title:'ACARS OFP ACPT',body:'ETD -30 分鐘，執行 ACARS OFP ACPT。'},
+          {title:'ACARS OFP ACPT',body:'ETD -30 分鐘，<span style="color:red; font-weight:bold;">執行 ACARS OFP ACPT。(法定程序）</span>'},
         ]},
       {id:'g6',label:'載重與性能',badge:'ETD -15 min',
         children:[
