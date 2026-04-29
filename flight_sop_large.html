@@ -88,16 +88,16 @@ function closeImageModal(){
 const PHASES=[
   {id:'pre',label:'一、後推前階段',sub:'7 個分區',pal:P.blue,isGroup:true,
     children:[
-      {id:'g1',label:'報到與登入',badge:'ETD - 90 min',
+      {id:'g1',label:'<span style="color:red; font-weight:bold;">（需有網路）</span>報到與登入',badge:'ETD - 90 min',
         children:[
           {title:'登入 APP',body:'飛行組員應於預計離場時間（ETD）前約 90 分鐘，使用個人帳號密碼登入行動應用程式（APP）。'},
         ]},
-      {id:'g2',label:'航班選取',badge:'',
+      {id:'g2',label:'<span style="color:red; font-weight:bold;">（需有網路）</span>航班選取',badge:'',
         children:[
           {title:'一般狀況',body:'根據 GD，任務航班會自動顯示於 Dashboard。'},
           {title:'特殊情況',body:'請利用「Add Flight」功能搜尋任務航班。'},
         ]},
-      {id:'g3',label:'資料下載與檢視',badge:'',
+      {id:'g3',label:'<span style="color:red; font-weight:bold;">（需有網路）</span>資料下載與檢視',badge:'',
         children:[
           {title:'確認並下載',body:'確認航機資訊並下載當班計畫。'},
           {title:'詳閱內容',body:'組員須詳閱 Dashboard、Briefing 及 Map 等各項內容。'},
@@ -139,7 +139,7 @@ const PHASES=[
     children:[
       {title:'Operation Log',body:'完成 Operation Log 填寫後，使用 Add Attachment 功能拍照上傳。'},
       {title:'Journey Log',body:'Journey Log 中詳實填寫 Flight Times and Fuel。'},
-      {title:'全體組員 Submit',body:'全體組員均須執行 Submit。'},
+      {title:'<span style="color:red; font-weight:bold;">（需有網路）</span>全體組員 Submit',body:'全體組員均須執行 Submit。'},
       {title:'Master 最終確認',body:'受指定之 Master 組員最終確認：\n① Flight Checklist 完整無誤\n② 執行 Submit（系統將以該員提交之資料為準）。'},
       {title:'離機',body:'確認所有程序完成後，方可離機。'},
     ]},
