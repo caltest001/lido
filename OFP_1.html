@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+<title>CI 0602 Flight Release</title>
+<style>
+  body {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    background: #fff;
+    color: #000;
+    padding: 2rem 3rem;
+    line-height: 1.7;
+  }
+  .b  { color: #1a52c4; }
+  .f  { background: #d0d0d0; border-radius: 2px; padding: 0 2px; }
+  .bf { background: #d0d0d0; color: #1a52c4; border-radius: 2px; padding: 0 2px; }
+
+  /* navlog table */
+  table.nav {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+  }
+  table.nav th {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding: 2px 6px;
+    white-space: nowrap;
+    font-weight: normal;
+  }
+  table.nav th.bl { color: #1a52c4; }
+  table.nav td {
+    text-align: center;
+    padding: 1px 6px;
+    white-space: nowrap;
+  }
+  table.nav td.left { text-align: left; }
+  table.nav tr:nth-child(even) td { background: #f8f8f8; }
+
+  @media print {
+    body { padding: 1cm 2cm; font-size: 11px; }
+    .no-print { display: none; }
+  }
+  .print-btn {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">Print / PDF</button>
+
+<pre>
+                  F L I G H T   R E L E A S E
+
+OFP 2/0/1        CAL602          VHHH TO RCTP           IFR 27/04/26
+COMPUTED 2243Z   ETD 0215Z   WX PROG 2800 2803 2806
+
+SCHED DEP 0215Z        SCHED ARR 0410Z
+<span class="b">ACTUAL DEP <span class="bf">0228Z</span>        DELTA <span class="bf">-00.11</span></span>
+
+A321-271NX / PW 1133G-JM / B-18117 / CG 33.00%
+
+SPEED SKD CLB-300/.78 CRZ-CI19 DSC-300/.78 APMS +02.6 LBS
+
+                   FUEL    TIME
+TRIP  RCTP         6305   01.14     510NGM    485NAM   DOW    114749
+ALTN  RCMQ         1732   00.21      88NGM     93NAM   PAYLOAD 19150
+FINAL RES          1932   00.30
+MIN   CONT         1007   00.15         LIMIT   / PLANNED        / <span class="b">ACTUAL</span>
+REQUIRED          10976   02.20    ZFW  161597  / 133899          / <span class="bf">______</span>
+EDTO  ADD             0   00.00    LDW  170416  / 141288 TO FUEL  / <span class="bf">______</span>
+DD/DP ADD             0   00.00    TOW  196209  / 147593          / <span class="bf">______</span>
+OPN               2718   00.40                          DIFF     / <span class="bf">______</span>
+EXTRA                 0   00.00
+TAKEOFF           13694   03.00
+BALLAST               0
+TAXI                552   00.24
+TOTAL             14246
+<span class="b">ACTUAL FUEL       <span class="bf">13694</span>       <span class="bf"></span></span>
+--------------------------------------------------------------------------------
+CREW
+  PIC  CHANG.CHI-TEH      650020   TKOF/LDG
+  FO   YIE.KIONG YONG     380785
+
+DISPATCHER  YU-CHENG CHOU / 606091   TPEODCI   +886-3-3993951
+
+REMARKS
+  10 MIN OPN FUEL RQ BY A321 FLEET.
+  30 MIN OPN FUEL PER FOB TPE SINGLE RWY CONDITION.
+  HONG KONG OVERFLIGHT: NOT REQUIRED
+--------------------------------------------------------------------------------
+SCHED  OFF-BLOCK  0215Z    SCHED  TAKEOFF  0239Z    SCHED  LDG  0410Z    SCHED  ON-BLOCK  0410Z
+<span class="b">ACTUAL OFF-BLOCK  <span class="bf">_____</span>   ACTUAL TAKEOFF  <span class="bf">0228Z</span>    ACTUAL LDG  <span class="bf">_____</span>   ACTUAL ON-BLOCK  <span class="bf">_____</span></span>
+--------------------------------------------------------------------------------
+NAVLOG
+ROUTE: VHHH/07C F370 DALOL V631 ENVAR M750 TONGA TONGA1A RCTP/05L
+</pre>
+
+<table class="nav">
+  <thead>
+    <tr>
+      <th>WPT</th>
+      <th>DTD</th>
+      <th>PLN TIME</th>
+      <th class="bl">ACT TIME</th>
+      <th class="bl">T.DELTA</th>
+      <th>PLN FUEL</th>
+      <th class="bl">ACT FUEL</th>
+      <th class="bl">F.DELTA</th>
+      <th>WIND/TEMP</th>
+      <th>ALT(FT)</th>
+      <th class="bl">ACT FL</th>
+      <th>NOTES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="left"><strong>VHHH</strong></td>
+      <td>510</td>
+      <td>0239Z</td>
+      <td><span class="bf">0228Z</span></td>
+      <td><span class="bf">-11</span></td>
+      <td>13694</td>
+      <td><span class="bf">13694</span></td>
+      <td><span class="bf">0</span></td>
+      <td>162/07 +25C</td>
+      <td><span class="f">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>SAMED</strong></td>
+      <td>470</td>
+      <td>0246Z</td>
+      <td><span class="bf">0236Z</span></td>
+      <td><span class="bf">-10</span></td>
+      <td>11993</td>
+      <td><span class="bf">12640</span></td>
+      <td><span class="bf">+647</span></td>
+      <td>257/23 -10C</td>
+      <td>20900</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>LUBMO</strong></td>
+      <td>461</td>
+      <td>0247Z</td>
+      <td><span class="bf">0237Z</span></td>
+      <td><span class="bf">-10</span></td>
+      <td>11797</td>
+      <td><span class="bf">12600</span></td>
+      <td><span class="bf">+803</span></td>
+      <td>256/24 -16C</td>
+      <td>23200</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>DALOL</strong></td>
+      <td>439</td>
+      <td>0250Z</td>
+      <td><span class="bf">0241Z</span></td>
+      <td><span class="bf">-09</span></td>
+      <td>11361</td>
+      <td><span class="bf">12164</span></td>
+      <td><span class="bf">+803</span></td>
+      <td>247/27 -25C</td>
+      <td>27700</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>TOC</strong></td>
+      <td>316</td>
+      <td>0306Z</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>9807</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>260/34 -47C</td>
+      <td>37000</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>ENVAR</strong></td>
+      <td>288</td>
+      <td>0309Z</td>
+      <td><span class="bf">0259Z</span></td>
+      <td><span class="bf">-10</span></td>
+      <td>9554</td>
+      <td><span class="bf">10100</span></td>
+      <td><span class="bf">+546</span></td>
+      <td>266/35 -49C</td>
+      <td>37000</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>BOCCA</strong></td>
+      <td>130</td>
+      <td>0329Z</td>
+      <td><span class="bf">0318Z</span></td>
+      <td><span class="bf">-11</span></td>
+      <td>8199</td>
+      <td><span class="bf">8745</span></td>
+      <td><span class="bf">+546</span></td>
+      <td>271/26 -29C</td>
+      <td><span class="f">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="left"><strong>TOD</strong></td>
+      <td>101</td>
+      <td>0333Z</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>7916</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>270/26 -29C</td>
+      <td>29000</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>* (mouseover)</td>
+    </tr>
+    <tr>
+      <td class="left"><strong>RCTP</strong></td>
+      <td>0</td>
+      <td>0352Z</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>7389</td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td>180/06 +22C</td>
+      <td><span class="f">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td><span class="bf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
